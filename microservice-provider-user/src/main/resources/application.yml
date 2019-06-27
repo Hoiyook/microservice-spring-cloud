@@ -1,0 +1,36 @@
+server:
+  port: 7900
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    #jpa依賴hibernate
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+  application:
+    name: microservice-provider-user
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.chenjj: DEBUG
+#    eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    #自定义元数据
+    metadata-map:
+      zone: ABC #eureka可以理解的行为
+      lilizhou: BBC # eureka不能理解的行为，不会影响客户端的行为
+    lease-renewal-interval-in-seconds: 5 #心跳周期
+#    appname: USER-SERVICE-HAHA #设置服务名

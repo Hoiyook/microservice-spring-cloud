@@ -1,0 +1,25 @@
+server:
+  port: 8761
+eureka:
+  client:
+    #    把eureka注册到哪个url上
+    service-url:
+      defaultZone: http://user:password123@localhost:8761/eureka
+    #    只当成是server，不要当成client
+    register-with-eureka: false
+    #    是否从注册表拉取注册信息
+    fetch-registry: false
+    #    健康状态监测
+    healthcheck:
+      enabled: true
+  # 配置主页
+  dashboard:
+    enabled: true
+    path: /
+    # 配置eureka服务的账号密码
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: password123

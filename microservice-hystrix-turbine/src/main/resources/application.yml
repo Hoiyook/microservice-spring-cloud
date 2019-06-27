@@ -1,0 +1,17 @@
+server:
+  port: 8031
+spring:
+  application:
+    name: microservice-hystrix-turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: microservice-consumer-movie-feign-with-hystrix,microservice-consumer-movie-ribbon-with-hystrix
+  clusterNameExpression: "'default'"

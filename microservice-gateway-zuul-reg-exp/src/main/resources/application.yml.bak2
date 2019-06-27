@@ -1,0 +1,25 @@
+server:
+  port: 8040
+eureka:
+  client:
+    #    把eureka注册到哪个url上
+    service-url:
+      defaultZone: http://user:password123@localhost:8761/eureka
+    #    健康状态监测
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+  # 配置主页
+  dashboard:
+    enabled: true
+    path: /
+spring:
+  application:
+    name: microservice-gateway-zuul
+zuul:
+  routes:
+    abc:
+      path: /user-path/**
+      serviceId: microservice-provider-user

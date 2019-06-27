@@ -1,0 +1,21 @@
+server:
+  port: 7932
+  context-path: /ribbonwithhystrix3
+#  port: 7910
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    #设置主页，跟context-path保持一致
+    #home-page-url-path: /ribbonwithhystrix3
+    metadata-map:
+      management:
+        port: 8081
+spring:
+  application:
+    name: microservice-consumer-movie-ribbon-with-hystrix3
+management:
+  port: 8081
